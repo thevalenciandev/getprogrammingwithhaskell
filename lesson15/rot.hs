@@ -5,3 +5,7 @@ rotN n letter = let middle = n `div` 2
                     letter' = fromEnum letter
                     offset = (letter' + middle) `mod` n
                 in toEnum offset
+
+rotChar :: Char -> Char
+rotChar c = rotN sizeOfAlphabet c
+  where sizeOfAlphabet = 1 + fromEnum (maxBound :: Char)
