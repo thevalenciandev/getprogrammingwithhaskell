@@ -9,3 +9,8 @@ rotN n letter = let middle = n `div` 2
 rotChar :: Char -> Char
 rotChar c = rotN sizeOfAlphabet c
   where sizeOfAlphabet = 1 + fromEnum (maxBound :: Char)
+
+fourLetterAlphabetEncoder :: [FourLetterAlphabet] -> [FourLetterAlphabet]
+fourLetterAlphabetEncoder vals = map rot4l vals
+  where sizeOfAlphabet = 1 + fromEnum (maxBound :: FourLetterAlphabet)
+        rot4l = rotN sizeOfAlphabet 
