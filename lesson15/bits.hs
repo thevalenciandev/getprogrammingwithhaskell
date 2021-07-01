@@ -15,3 +15,6 @@ intToBits :: Int -> Bits
 intToBits n = replicate padding False ++ reversed 
     where reversed = reverse $ intToBits' n
           padding = maxBits - (length reversed)
+
+charToBits :: Char -> Bits
+charToBits = intToBits . fromEnum
