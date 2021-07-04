@@ -29,12 +29,19 @@ data CollectibleToy = CollectibleToy {
   , toyPrice :: Double
 } deriving Show
 
-data StoreItem = BookItem Book | RecordItem VinylRecord | ToyItem CollectibleToy deriving Show
+data Pamphlet = Pamphlet {
+    pamphletTitle :: String
+  , pamphletDescription :: String
+  , contact :: Name
+} deriving Show
+
+data StoreItem = BookItem Book | RecordItem VinylRecord | ToyItem CollectibleToy | PamphletItem Pamphlet deriving Show
 
 price :: StoreItem -> Double
 price (BookItem b)   = bookPrice b
 price (RecordItem r) = recordPrice r
 price (ToyItem t)    = toyPrice t
+price (PamphletItem _) = 0.0
 
 madeBy :: StoreItem -> String
 madeBy (BookItem b)   = show (author b)
@@ -48,3 +55,4 @@ c3 = ArtistCreator $ Band "Metallica"
 i1 = BookItem (Book {author = c1, isbn = "ISBN123", title = "War stories", year = 1984, bookPrice = 4.99})
 i2 = RecordItem (VinylRecord {artist = c3, recordTitle = "Garage Days Re0Revisited", recordYear = 1987, recordPrice = 7.99})
 i3 = ToyItem (CollectibleToy {name = "Eddie", description = "Iron Maiden's Eddie in Killers form", toyPrice = 10.99})
+i4 = PamphletItem (Pamphlet {pamphletTitle = "Title", pamphletDescription = "Desc", contact = Name "John" "Smith"})
